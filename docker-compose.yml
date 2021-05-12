@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    container_name: ommp-web
+    image:
+      BUILD_TAG
+    ports:
+      - "8081:80"
+    # 修改volumes :/portal-ihspl/config 前面的路径，改路径即为需要替换的config文件路径，注意，必须是绝对路径
+    # volumes:
+    #   - /Users/cjj/code/iot/web-vue3/ommp-web/docker/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always

@@ -2,14 +2,22 @@
   "name": "vue3-template",
   "version": "0.1.0",
   "private": true,
+  "buildtag": "BUILD_TAG",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build-dist": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "mock": "cross-env NODE_ENV=mock vue-cli-service serve",
+    "clean-container": "docker rm -f $(docker ps -a | grep \"$npm_package_name\" | awk \"{print \\$1}\") || true",
+    "clean-images": "docker rmi -f $(docker images | grep \"$npm_package_name\" | awk \"{print \\$3}\") || true",
+    "build-temp": "docker build -t $npm_package_name:$npm_package_version --no-cache .",
+    "build": "yarn clean-container && yarn clean-images && yarn build-temp"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
+    "vue-request": "^1.1.1",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
