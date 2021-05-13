@@ -1,8 +1,10 @@
 {
-  "name": "vue3-template",
+  "name": "<%=projectName%>",
   "version": "0.1.0",
-  "private": true,
+  "private": "<%=private%>",
   "buildtag": "BUILD_TAG",
+  "autor": "<%=author%>",
+  "license": "<%=license%>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build-dist": "vue-cli-service build",
