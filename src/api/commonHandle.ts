@@ -1,4 +1,4 @@
-export default (promiseRes: Promise<any>, options?: CallBackOptions) => {
+export default (promiseRes: Promise<any>, options?: CallBackOptions): void => {
   promiseRes.then((result: any) => {
     if (result.code === 0) {
       if (options && options.successCb) {
