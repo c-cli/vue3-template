@@ -9,6 +9,9 @@ module.exports = {
         target: isMock ? 'http://rap2api.taobao.org/app/mock/228039' : 'http://rap2api.taobao.org/app/mock/228039',
         ws: true,
         changeOrigin: true,
+        pathRewrite: { // 重写路径
+          '^/api': '',
+        },
       },
     },
   },
