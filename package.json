@@ -39,5 +39,18 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "typescript": "~4.1.5"
-  }
+  },
+  "yapi-code.domain": "https://yapi.baidu.com",
+  "yapi-code.project": [
+    {
+      "name": "cjjtest",
+      "token": "60f7aff06481876bd28d151887a432671d31b889a8a390c2e6be422b68fbf77c",
+      "domain": "https://yapi.baidu.com"
+    }
+  ],
+  "yapi-code.mockNumber": "Random.natural(1000,1000)",
+  "yapi-code.mockBoolean": "false",
+  "yapi-code.mockString": "Random.cword(5, 7)",
+  "yapi-code.mockKeyWordEqual": {},
+  "yapi-code.mockKeyWordLike": {}
 }

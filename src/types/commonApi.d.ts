@@ -1,6 +1,6 @@
 interface CallBackOptions {
-  successCb?: function;
-  errorCb?: function;
-  completeCb?: function;
-  failCb?: function;
+  successCb?: (T) => T;
+  errorCb?: (T) => T;
+  completeCb?: (T) => T;
+  failCb?: (T) => T;
 }

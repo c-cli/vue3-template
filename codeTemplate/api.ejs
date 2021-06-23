@@ -1,0 +1,47 @@
+
+/********************************************** <%= funcName %> <%= api._id %> start ***********************************************/
+<%= type %>  
+<% if (api.req_query.length > 0 || api.req_params.length > 0) { %>
+export interface I<%= funcName.slice(0, 1).toUpperCase() + funcName.slice(1) %>Params {<% api.req_query.map(query => { %>
+  <%= query.name %>: string;<% }) %>
+<% api.req_params.map(query => { %>
+<%= query.name %>: string;<% }) %> }<% } %> 
+<% if (requestBodyType) { %>
+<%= requestBodyType %> <% } %> 
+
+export interface <%= typeName %>CallBackOptions {
+  successCb?: (res: <%= typeName %>) => void;
+  errorCb?: (res: <%= typeName %>) => void;
+  completeCb?: (res: <%= typeName %>) => void;
+  failCb?: (res: <%= typeName %>) => void;
+}
+
+/**
+* <%= api.title %> 
+* https://yapi.baidu.com/project/<%= api.project_id %>/interface/api/<%= api._id %> 
+* @author <%= api.username %>  
+* <%= api.req_params%>
+<% if (requestBodyType) { -%>* @param {I<%= funcName.slice(0, 1).toUpperCase() + funcName.slice(1) %>Data} params<% } %>
+* @returns
+*/
+
+<% if (api.method.toUpperCase() === 'POST') { %>
+export function <%= funcName %> (<% if (requestBodyType) { %> params: I<%= funcName.slice(0, 1).toUpperCase() + funcName.slice(1) %>Data<% } %>,options?: <%= typeName %>CallBackOptions ):Promise<<%= typeName %>> {
+const promiseRes = post<<%= typeName %>>(`/api<%= api.query_path.path.replace(/\{/g,"${params.") %>`,<% if (requestBodyType) {%>params<% } %><%if(api.tag.indexOf('operate') !== -1){%>,
+    { notifySucess: true,
+    notifyError: true,}<%}%> );
+return commonHandle<<%= typeName %>,<%= typeName %>CallBackOptions>(promiseRes, options);
+}
+<% } %>
+
+<% if (api.method.toUpperCase() === 'GET') { %>
+export function <%= funcName %> (<% if (api.req_query) { %> params: I<%= funcName.slice(0, 1).toUpperCase() + funcName.slice(1) %>Params<% } %>,options?: <%= typeName %>CallBackOptions ):Promise<<%= typeName %>> {
+const promiseRes = get<<%= typeName %>>(`/api<%= api.query_path.path.replace(/\{/g,"${params.") %>`,<% if (api.req_query) {%>{params
+<%if(api.tag.indexOf('operate') !== -1){%>,
+    notifySucess: true,
+    notifyError: true<%}%>}<% } %> );
+return commonHandle<<%= typeName %>,<%= typeName %>CallBackOptions>(promiseRes, options);
+}
+<% } %>
+
+/********************************************** <%= funcName %> <%= api._id %> end ***********************************************/

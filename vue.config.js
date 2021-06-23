@@ -6,7 +6,7 @@ module.exports = {
     port: isMock ? 8001 : 8002,
     proxy: {
       '^/api': {
-        target: isMock ? 'http://rap2api.taobao.org/app/mock/228039' : 'http://rap2api.taobao.org/app/mock/228039',
+        target: isMock ? 'https://yapi.baidu.com/mock/71010' : 'https://yapi.baidu.com/mock/71010',
         ws: true,
         changeOrigin: true,
         pathRewrite: { // 重写路径

@@ -86,6 +86,7 @@ declare module 'axios' {
     headers: any;
     config: AxiosRequestConfig;
     request?: any;
+    [key: string]: any
   }
 
   export interface AxiosError<T = any> extends Error {
